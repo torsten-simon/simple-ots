@@ -9,6 +9,7 @@ services:
       - "80:80"
     restart: on-failure
     environment:
-      AUTH_IPS: 1.1.1.1,8.8.8.8
+      AUTH_IP_RANGE: 192.168.0.
+      # AUTH_IPS: 1.1.1.1,8.8.8.8
     volumes:
       - ./html:/var/www/html
