@@ -119,7 +119,16 @@ function is_allowed(): bool
 {
     $is_allowed = true;
 
-    if (isset($_ENV['AUTH_IPS'])) {
+    if (isset($_ENV['AUTH_IP_RANGE'])) {
+        $auth_ips   = explode(',', $_ENV['AUTH_IP_RANGE']);
+        foreach($auth_ips as $ip) {
+            $is_allowed = strpos(get_remote_ip(), $ip) !== FALSE;
+            if($is_allowed) {
+                break;
+            }
+        }
+        $is_allowed = in_array(get_remote_ip(), $auth_ips);
+    } else if (isset($_ENV['AUTH_IPS'])) {
         $auth_ips   = explode(',', $_ENV['AUTH_IPS']);
         $is_allowed = in_array(get_remote_ip(), $auth_ips);
     }
