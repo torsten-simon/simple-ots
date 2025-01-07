@@ -127,7 +127,6 @@ function is_allowed(): bool
                 break;
             }
         }
-        $is_allowed = in_array(get_remote_ip(), $auth_ips);
     } else if (isset($_ENV['AUTH_IPS'])) {
         $auth_ips   = explode(',', $_ENV['AUTH_IPS']);
         $is_allowed = in_array(get_remote_ip(), $auth_ips);
